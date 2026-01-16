@@ -46,7 +46,7 @@ export const GameTimer = () => {
   const handleNextQuarter = () => {
     pauseTimer();
     nextQuarter();
-    toast.success(`Inicio del ${currentQuarter + 1}º cuarto`);
+    toast.success(`Inicio del ${currentQuarter + 1}º cuarto`, { duration: 1500 });
   };
 
   const getQuarterLabel = () => {
