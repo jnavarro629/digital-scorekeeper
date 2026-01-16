@@ -253,14 +253,21 @@ export const ActionButtons = () => {
 
   const handleBlockClick = () => {
     addBlock(selectedPlayer.team, selectedPlayer.index);
+    setActionDialog({ open: true, type: 'block-shot-type' });
+  };
+
+  const handleBlockShotType = (shotType) => {
+    setShotType(shotType);
     setActionDialog({ open: true, type: 'block-received' });
   };
 
   const handleBlockReceived = (playerIndex) => {
     addBlockReceived(getOpponentTeam(), playerIndex);
-    toast.success('Tapón registrado', { duration: 1500 });
-    clearSelection();
-    setActionDialog({ open: false, type: null });
+    // Add missed shot for blocked player
+    addMissedShot(getOpponentTeam(), playerIndex, shotType);
+    // Store block info for rebound question
+    setSecondaryAction({ type: 'block-rebound', shotType });
+    setActionDialog({ open: true, type: 'rebound-question' });
   };
 
   const renderSecondaryDialog = () => {
