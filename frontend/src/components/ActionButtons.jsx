@@ -270,28 +270,6 @@ export const ActionButtons = () => {
     const sameTeamPlayers = selectedPlayer.team === 'home' ? homeTeam.players : awayTeam.players;
 
     switch (actionDialog.type) {
-      case 'shooting-foul-question':
-        return (
-          <Dialog open={true} onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>¿Fue falta de tiro?</DialogTitle>
-                <DialogDescription>
-                  ¿La falta fue cometida en acción de tiro?
-                </DialogDescription>
-              </DialogHeader>
-              <div className="flex gap-3 justify-end">
-                <Button variant="outline" onClick={() => handleShootingFoulQuestion(false)}>
-                  No
-                </Button>
-                <Button onClick={() => handleShootingFoulQuestion(true)}>
-                  Sí
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog>
-        );
-
       case 'free-throw-count':
         return (
           <Dialog open={true} onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}>
