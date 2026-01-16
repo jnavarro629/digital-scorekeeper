@@ -14,10 +14,12 @@ export const GameSetup = () => {
   const [homeTeamName, setHomeTeamName] = useState('');
   const [homeTeamColor, setHomeTeamColor] = useState('#0074ff');
   const [homePlayers, setHomePlayers] = useState(Array(12).fill(''));
+  const [homePlayerNumbers, setHomePlayerNumbers] = useState(Array(12).fill('').map((_, i) => i + 1));
   
   const [awayTeamName, setAwayTeamName] = useState('');
   const [awayTeamColor, setAwayTeamColor] = useState('#ff4757');
   const [awayPlayers, setAwayPlayers] = useState(Array(12).fill(''));
+  const [awayPlayerNumbers, setAwayPlayerNumbers] = useState(Array(12).fill('').map((_, i) => i + 1));
   
   const [quarterDuration, setQuarterDurationLocal] = useState(10);
 
@@ -27,10 +29,22 @@ export const GameSetup = () => {
     setHomePlayers(newPlayers);
   };
 
+  const handleHomePlayerNumberChange = (index, value) => {
+    const newNumbers = [...homePlayerNumbers];
+    newNumbers[index] = parseInt(value) || (index + 1);
+    setHomePlayerNumbers(newNumbers);
+  };
+
   const handleAwayPlayerChange = (index, value) => {
     const newPlayers = [...awayPlayers];
     newPlayers[index] = value;
     setAwayPlayers(newPlayers);
+  };
+
+  const handleAwayPlayerNumberChange = (index, value) => {
+    const newNumbers = [...awayPlayerNumbers];
+    newNumbers[index] = parseInt(value) || (index + 1);
+    setAwayPlayerNumbers(newNumbers);
   };
 
   const handleStartGame = () => {
