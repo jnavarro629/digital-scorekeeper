@@ -14,11 +14,35 @@ export const exportGameToPDF = (gameData, includePlayByPlay = false) => {
   pdf.setFontSize(12);
   pdf.setFont(undefined, 'normal');
   pdf.text(`${gameData.homeTeam.name} vs ${gameData.awayTeam.name}`, pageWidth / 2, 30, { align: 'center' });
+  
+  // Score
   pdf.setFontSize(16);
   pdf.setFont(undefined, 'bold');
   pdf.text(`${gameData.homeScore} - ${gameData.awayScore}`, pageWidth / 2, 40, { align: 'center' });
   
-  let yPos = 50;
+  // Additional Info (City, Category, Date)
+  pdf.setFontSize(10);
+  pdf.setFont(undefined, 'normal');
+  let yPos = 48;
+  
+  if (gameData.city || gameData.category) {
+    let infoText = '';
+    if (gameData.city) infoText += gameData.city;
+    if (gameData.city && gameData.category) infoText += ' - ';
+    if (gameData.category) infoText += gameData.category;
+    pdf.text(infoText, pageWidth / 2, yPos, { align: 'center' });
+    yPos += 6;
+  }
+  
+  // Date
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('es-ES', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+  pdf.text(dateStr, pageWidth / 2, yPos, { align: 'center' });
+  yPos += 8;
   
   // Helper function to calculate percentages
   const calcPct = (made, attempted) => {
