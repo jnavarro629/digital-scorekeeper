@@ -94,19 +94,18 @@ export const PlayerSelector = () => {
                     <div className="text-left flex-1">
                       <div className="font-semibold">{player.name}</div>
                       <div className="flex items-center gap-2 text-xs opacity-80 flex-wrap">
-                        <span>{stats.points} PTS</span>
+                        <span>{stats.points} P.</span>
                         <span>•</span>
-                        <span>{stats.rebounds} REB</span>
+                        <span>{stats.rebounds} RB.</span>
                         <span>•</span>
-                        <span>{stats.assists} ASIS</span>
-                        <span>•</span>
-                        <span>{val} VAL</span>
+                        <span>{stats.assists} A.</span>
                         <span>•</span>
                         <span 
-                          className="inline-flex items-center justify-center w-5 h-5 rounded text-white font-bold"
+                          className="inline-flex items-center justify-center h-5 px-1.5 rounded text-white font-bold gap-0.5"
                           style={{ backgroundColor: '#ef4444', fontSize: '10px' }}
                         >
-                          {stats.foulsCommitted}
+                          <span>{stats.foulsCommitted}</span>
+                          <span className="text-[8px]">F</span>
                         </span>
                       </div>
                     </div>
