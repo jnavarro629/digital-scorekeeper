@@ -317,30 +317,33 @@ export const ActionButtons = () => {
               </div>
             </div>
           </DialogContent>
+          </Dialog>
         );
 
       case 'block-received':
         return (
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Tapón recibido por</DialogTitle>
-              <DialogDescription>
-                ¿Qué jugador del equipo contrario fue taponado?
-              </DialogDescription>
-            </DialogHeader>
-            <div className="space-y-2 max-h-[300px] overflow-y-auto">
-              {opponentPlayers.map((player, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  className="w-full justify-start"
-                  onClick={() => handleBlockReceived(index)}
-                >
-                  #{player.number} {player.name}
-                </Button>
-              ))}
-            </div>
-          </DialogContent>
+          <Dialog open={true} onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Tapón recibido por</DialogTitle>
+                <DialogDescription>
+                  ¿Qué jugador del equipo contrario fue taponado?
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-2 max-h-[300px] overflow-y-auto">
+                {opponentPlayers.map((player, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    className="w-full justify-start"
+                    onClick={() => handleBlockReceived(index)}
+                  >
+                    #{player.number} {player.name}
+                  </Button>
+                ))}
+              </div>
+            </DialogContent>
+          </Dialog>
         );
 
       default:
