@@ -544,6 +544,7 @@ export const ActionButtons = () => {
           </div>
         </DialogContent>
       </Dialog>
+      )}
 
       {/* Secondary Actions Dialogs */}
       {renderSecondaryDialog()}
