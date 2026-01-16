@@ -59,11 +59,17 @@ export const GameSetup = () => {
     }
     
     const homePlayersFiltered = homePlayers
-      .map((name, idx) => ({ name: name.trim() || `Jugador ${idx + 1}`, number: idx + 1 }))
+      .map((name, idx) => ({ 
+        name: name.trim() || `Jugador ${idx + 1}`, 
+        number: homePlayerNumbers[idx] 
+      }))
       .filter((_, idx) => idx < 12);
     
     const awayPlayersFiltered = awayPlayers
-      .map((name, idx) => ({ name: name.trim() || `Jugador ${idx + 1}`, number: idx + 1 }))
+      .map((name, idx) => ({ 
+        name: name.trim() || `Jugador ${idx + 1}`, 
+        number: awayPlayerNumbers[idx] 
+      }))
       .filter((_, idx) => idx < 12);
 
     // Save configuration
