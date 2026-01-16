@@ -456,11 +456,12 @@ export const ActionButtons = () => {
       </Dialog>
 
       {/* Foul Dialog */}
-      <Dialog 
-        open={actionDialog.open && actionDialog.type === 'foul'} 
-        onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}
-      >
-        <DialogContent>
+      {actionDialog.open && actionDialog.type === 'foul' && (
+        <Dialog 
+          open={true} 
+          onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}
+        >
+          <DialogContent>
           <DialogHeader>
             <DialogTitle>Tipo de Falta</DialogTitle>
             <DialogDescription>
