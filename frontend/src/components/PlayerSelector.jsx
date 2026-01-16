@@ -46,12 +46,27 @@ export const PlayerSelector = () => {
   };
 
   const renderTeamPlayers = (team, activePlayers, teamData, playerStats) => {
+    const calculateVal = (stats) => {
+      return (
+        stats.points +
+        stats.rebounds +
+        stats.assists +
+        stats.steals +
+        stats.blocks -
+        (stats.fg2Attempted - stats.fg2Made) -
+        (stats.fg3Attempted - stats.fg3Made) -
+        (stats.ftAttempted - stats.ftMade) -
+        stats.turnovers
+      );
+    };
+    
     return (
       <div className="space-y-3">
         {activePlayers.map((playerIndex, activeIdx) => {
           const player = teamData.players[playerIndex];
           const stats = playerStats[playerIndex];
           const isSelected = isPlayerSelected(team, playerIndex);
+          const val = calculateVal(stats);
           
           return (
             <div key={activeIdx} className="relative">
@@ -76,10 +91,23 @@ export const PlayerSelector = () => {
                     >
                       #{player.number}
                     </div>
-                    <div className="text-left">
+                    <div className="text-left flex-1">
                       <div className="font-semibold">{player.name}</div>
-                      <div className="text-xs opacity-80">
-                        {stats.points} PTS | {stats.foulsCommitted} FC
+                      <div className="flex items-center gap-2 text-xs opacity-80 flex-wrap">
+                        <span>{stats.points} PTS</span>
+                        <span>•</span>
+                        <span>{stats.rebounds} REB</span>
+                        <span>•</span>
+                        <span>{stats.assists} ASIS</span>
+                        <span>•</span>
+                        <span>{val} VAL</span>
+                        <span>•</span>
+                        <span 
+                          className="inline-flex items-center justify-center w-5 h-5 rounded text-white font-bold"
+                          style={{ backgroundColor: '#ef4444', fontSize: '10px' }}
+                        >
+                          {stats.foulsCommitted}
+                        </span>
                       </div>
                     </div>
                   </div>
