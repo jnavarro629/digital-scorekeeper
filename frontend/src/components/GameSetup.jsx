@@ -115,10 +115,30 @@ export const GameSetup = () => {
               Configuración del Partido
             </CardTitle>
             <CardDescription>
-              Establece la duración de los cuartos
+              Información del partido
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="city">Ciudad</Label>
+                <Input
+                  id="city"
+                  placeholder="Ej: Madrid"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="category">Categoría</Label>
+                <Input
+                  id="category"
+                  placeholder="Ej: Senior, Junior, Cadete..."
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+              </div>
+            </div>
             <div className="flex items-center gap-4">
               <Label htmlFor="quarter-duration" className="min-w-[200px]">
                 Duración de cuartos (minutos):
