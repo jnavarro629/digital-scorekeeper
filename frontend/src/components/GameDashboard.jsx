@@ -49,7 +49,7 @@ export const GameDashboard = () => {
 
   const confirmReset = () => {
     resetGame();
-    toast.success('Partido reiniciado');
+    toast.success('Partido reiniciado', { duration: 1500 });
     setShowResetDialog(false);
   };
 
