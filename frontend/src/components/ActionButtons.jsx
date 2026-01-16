@@ -32,6 +32,9 @@ export const ActionButtons = () => {
   const [reboundType, setReboundType] = useState('defensive');
   const [foulType, setFoulType] = useState('personal');
   const [secondaryAction, setSecondaryAction] = useState(null);
+  const [freeThrowCount, setFreeThrowCount] = useState(1);
+  const [currentFreeThrow, setCurrentFreeThrow] = useState(1);
+  const [freeThrowPlayer, setFreeThrowPlayer] = useState(null);
 
   if (!selectedPlayer) {
     return (
