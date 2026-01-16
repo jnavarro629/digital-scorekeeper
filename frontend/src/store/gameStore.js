@@ -8,6 +8,8 @@ const initialState = {
   homeTeam: { name: '', color: '#0074ff', players: [] },
   awayTeam: { name: '', color: '#ff4757', players: [] },
   quarterDuration: 10, // minutes
+  city: '',
+  category: '',
   
   // Game state
   isConfigured: false,
