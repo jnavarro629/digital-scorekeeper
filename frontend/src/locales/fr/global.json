@@ -46,7 +46,7 @@
     "success_message": "Configuration terminée ! Le match est prêt."
   },
   "dashboard": {
-    "title": "Statistiques de basket-ball - CourtSide Stats",
+    "title": "Statistiques de basket-ball",
     "undo_action": "Annuler la dernière action",
     "view_stats": "Voir les statistiques",
     "export_pdf": "Exporter Box Score en PDF",

@@ -58,7 +58,7 @@ export const GameTimer = () => {
 
   const getQuarterLabel = () => {
     if (currentQuarter <= 4) {
-      return `${currentQuarter}${t("game_timer.quarter")}`;
+      return t("game_timer.quarter", { quarter: currentQuarter });
     } else {
       return `${t("game_timer.overtime")} ${currentQuarter - 4}`;
     }

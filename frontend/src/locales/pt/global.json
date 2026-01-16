@@ -46,7 +46,7 @@
     "success_message": "Configuração concluída! O jogo está pronto."
   },
   "dashboard": {
-    "title": "Estatísticas Basquete - CourtSide Stats",
+    "title": "Estatísticas Basquete",
     "undo_action": "Desfazer última ação",
     "view_stats": "Ver estatísticas",
     "export_pdf": "Exportar Box Score em PDF",

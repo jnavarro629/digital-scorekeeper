@@ -46,7 +46,7 @@
     "success_message": "Configuration completed! The game is ready."
   },
   "dashboard": {
-    "title": "CourtSide Stats | Real-Time Basketball Statistics",
+    "title": "CourtSide Stats",
     "undo_action": "Undo last action",
     "view_stats": "View Statistics",
     "export_pdf": "Export Box Score to PDF",

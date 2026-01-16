@@ -46,7 +46,7 @@
     "success_message": "¡Configuración completada! El partido está listo."
   },
   "dashboard": {
-    "title": "Estadísticas Baloncesto - CourtSide Stats",
+    "title": "Estadísticas Baloncesto",
     "undo_action": "Deshacer última acción",
     "view_stats": "Ver estadísticas",
     "export_pdf": "Exportar Box Score a PDF",
