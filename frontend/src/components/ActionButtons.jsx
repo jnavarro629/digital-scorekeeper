@@ -461,19 +461,16 @@ export const ActionButtons = () => {
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-2 max-h-[300px] overflow-y-auto">
-                {sameTeamPlayers.map((player, index) => {
-                  if (index === selectedPlayer.index) return null;
-                  return (
-                    <Button
-                      key={index}
-                      variant="outline"
-                      className="w-full justify-start"
-                      onClick={() => handleAssistPlayer(index)}
-                    >
-                      #{player.number} {player.name}
-                    </Button>
-                  );
-                })}
+                {activeSameTeamPlayers.map((player) => (
+                  <Button
+                    key={player.originalIndex}
+                    variant="outline"
+                    className="w-full justify-start"
+                    onClick={() => handleAssistPlayer(player.originalIndex)}
+                  >
+                    #{player.number} {player.name}
+                  </Button>
+                ))}
               </div>
             </DialogContent>
           </Dialog>
