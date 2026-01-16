@@ -273,6 +273,78 @@ export const ActionButtons = () => {
     const sameTeamPlayers = selectedPlayer.team === 'home' ? homeTeam.players : awayTeam.players;
 
     switch (actionDialog.type) {
+      case 'shooting-foul-question':
+        return (
+          <Dialog open={true} onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>¿Fue falta de tiro?</DialogTitle>
+                <DialogDescription>
+                  ¿La falta fue cometida en acción de tiro?
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex gap-3 justify-end">
+                <Button variant="outline" onClick={() => handleShootingFoulQuestion(false)}>
+                  No
+                </Button>
+                <Button onClick={() => handleShootingFoulQuestion(true)}>
+                  Sí
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+        );
+
+      case 'free-throw-count':
+        return (
+          <Dialog open={true} onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Número de tiros libres</DialogTitle>
+                <DialogDescription>
+                  ¿Cuántos tiros libres debe tirar el jugador?
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex gap-3 justify-center">
+                <Button onClick={() => handleFreeThrowCount(1)}>
+                  1 Tiro
+                </Button>
+                <Button onClick={() => handleFreeThrowCount(2)}>
+                  2 Tiros
+                </Button>
+                <Button onClick={() => handleFreeThrowCount(3)}>
+                  3 Tiros
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+        );
+
+      case 'free-throw-attempt':
+        const ftPlayerTeam = freeThrowPlayer.team === 'home' ? homeTeam : awayTeam;
+        const ftPlayer = ftPlayerTeam.players[freeThrowPlayer.index];
+        
+        return (
+          <Dialog open={true} onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Tiro Libre {currentFreeThrow} de {freeThrowCount}</DialogTitle>
+                <DialogDescription>
+                  {ftPlayerTeam.name} - #{ftPlayer.number} {ftPlayer.name}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex gap-3 justify-end">
+                <Button variant="outline" onClick={() => handleFreeThrowAttempt(false)}>
+                  Fallo
+                </Button>
+                <Button onClick={() => handleFreeThrowAttempt(true)}>
+                  Anotado
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+        );
+
       case 'rebound-question':
         return (
           <Dialog open={true} onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}>
