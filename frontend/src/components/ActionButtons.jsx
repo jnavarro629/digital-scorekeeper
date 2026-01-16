@@ -596,12 +596,12 @@ export const ActionButtons = () => {
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-2 max-h-[300px] overflow-y-auto">
-                {opponentPlayers.map((player, index) => (
+                {activeOpponentPlayers.map((player) => (
                   <Button
-                    key={index}
+                    key={player.originalIndex}
                     variant="outline"
                     className="w-full justify-start"
-                    onClick={() => handleBlockReceived(index)}
+                    onClick={() => handleBlockReceived(player.originalIndex)}
                   >
                     #{player.number} {player.name}
                   </Button>
