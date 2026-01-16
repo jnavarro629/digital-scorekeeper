@@ -77,6 +77,8 @@ export const useGameStore = create(
       
       setQuarterDuration: (duration) => set({ quarterDuration: duration }),
       
+      setGameInfo: (info) => set({ city: info.city, category: info.category }),
+      
       completeConfiguration: () => {
         const state = get();
         const homeStats = state.homeTeam.players.map(p => createEmptyPlayerStats(p.name));
