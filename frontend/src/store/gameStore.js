@@ -464,6 +464,8 @@ export const useGameStore = create(
           awayScore: state.awayScore,
           currentQuarter: state.currentQuarter,
           quarterDuration: state.quarterDuration,
+          city: state.city,
+          category: state.category,
           homePlayerStats: state.homePlayerStats,
           awayPlayerStats: state.awayPlayerStats,
           playByPlay: state.playByPlay,
