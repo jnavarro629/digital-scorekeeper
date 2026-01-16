@@ -259,11 +259,20 @@ export const GameSetup = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {awayPlayers.map((player, index) => (
                       <div key={index} className="flex items-center gap-2">
-                        <span className="text-sm font-medium min-w-[30px]">#{index + 1}</span>
+                        <Input
+                          type="number"
+                          min="0"
+                          max="99"
+                          value={awayPlayerNumbers[index]}
+                          onChange={(e) => handleAwayPlayerNumberChange(index, e.target.value)}
+                          className="w-16"
+                          placeholder="#"
+                        />
                         <Input
                           placeholder={`Jugador ${index + 1}`}
                           value={player}
                           onChange={(e) => handleAwayPlayerChange(index, e.target.value)}
+                          className="flex-1"
                         />
                       </div>
                     ))}
