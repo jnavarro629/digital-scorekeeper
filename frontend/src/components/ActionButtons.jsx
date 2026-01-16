@@ -25,6 +25,8 @@ export const ActionButtons = () => {
     awayTeam,
     homePlayerStats,
     awayPlayerStats,
+    homeActivePlayers,
+    awayActivePlayers,
   } = useGameStore();
   
   const [actionDialog, setActionDialog] = useState({ open: false, type: null });
