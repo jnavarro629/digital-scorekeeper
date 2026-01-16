@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useGameStore } from "../store/gameStore";
+import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -15,6 +16,7 @@ import { Users, Clock, Palette, Play } from "lucide-react";
 import { toast } from "sonner";
 
 export const GameSetup = () => {
+  const { t } = useTranslation();
   const {
     setTeamConfig,
     setQuarterDuration,
@@ -71,24 +73,28 @@ export const GameSetup = () => {
   const handleStartGame = () => {
     // Validation
     if (!homeTeamName.trim()) {
-      toast.error("Por favor, ingresa el nombre del equipo local");
+      toast.error(t("game_setup.validation_home_name"));
       return;
     }
     if (!awayTeamName.trim()) {
-      toast.error("Por favor, ingresa el nombre del equipo visitante");
+      toast.error(t("game_setup.validation_away_name"));
       return;
     }
 
     const homePlayersFiltered = homePlayers
       .map((name, idx) => ({
-        name: name.trim() || `Jugador ${idx + 1}`,
+        name:
+          name.trim() ||
+          `${t("game_setup.player_placeholder_prefix")} ${idx + 1}`,
         number: homePlayerNumbers[idx],
       }))
       .filter((_, idx) => idx < 12);
 
     const awayPlayersFiltered = awayPlayers
       .map((name, idx) => ({
-        name: name.trim() || `Jugador ${idx + 1}`,
+        name:
+          name.trim() ||
+          `${t("game_setup.player_placeholder_prefix")} ${idx + 1}`,
         number: awayPlayerNumbers[idx],
       }))
       .filter((_, idx) => idx < 12);
@@ -110,7 +116,7 @@ export const GameSetup = () => {
     setGameInfo({ city, category });
     completeConfiguration();
 
-    toast.success("¡Configuración completada! El partido está listo.", {
+    toast.success(t("game_setup.success_message"), {
       duration: 1500,
     });
   };
@@ -121,11 +127,9 @@ export const GameSetup = () => {
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold font-digital tracking-wide">
-            CourtSide Stats | Estadísticas de Baloncesto
+            {t("app.title")}
           </h1>
-          <p className="text-muted-foreground">
-            Configura los equipos para comenzar el partido
-          </p>
+          <p className="text-muted-foreground">{t("app.subtitle")}</p>
         </div>
 
         {/* Game Settings */}
@@ -133,26 +137,30 @@ export const GameSetup = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="w-5 h-5" />
-              Configuración del Partido
+              {t("game_setup.configuration_title")}
             </CardTitle>
-            <CardDescription>Información del partido</CardDescription>
+            <CardDescription>
+              {t("game_setup.configuration_desc")}
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="city">Ciudad</Label>
+                <Label htmlFor="city">{t("game_setup.city_label")}</Label>
                 <Input
                   id="city"
-                  placeholder="Ej: Madrid"
+                  placeholder={t("game_setup.city_placeholder")}
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="category">Categoría/Competición</Label>
+                <Label htmlFor="category">
+                  {t("game_setup.category_label")}
+                </Label>
                 <Input
                   id="category"
-                  placeholder="Ej: Senior, Junior, Cadete..."
+                  placeholder={t("game_setup.category_placeholder")}
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 />
@@ -160,7 +168,7 @@ export const GameSetup = () => {
             </div>
             <div className="flex items-center gap-4">
               <Label htmlFor="quarter-duration" className="min-w-[200px]">
-                Duración de cuartos (minutos):
+                {t("game_setup.quarter_duration_label")}
               </Label>
               <Input
                 id="quarter-duration"
@@ -182,11 +190,11 @@ export const GameSetup = () => {
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="home" className="gap-2">
               <Users className="w-4 h-4" />
-              Equipo Local
+              {t("game_setup.home_team_tab")}
             </TabsTrigger>
             <TabsTrigger value="away" className="gap-2">
               <Users className="w-4 h-4" />
-              Equipo Visitante
+              {t("game_setup.away_team_tab")}
             </TabsTrigger>
           </TabsList>
 
@@ -194,18 +202,20 @@ export const GameSetup = () => {
           <TabsContent value="home" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>Equipo Local</CardTitle>
+                <CardTitle>{t("game_setup.home_team_config_title")}</CardTitle>
                 <CardDescription>
-                  Configura el nombre, color y jugadores del equipo local
+                  {t("game_setup.home_team_config_desc")}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Team Name */}
                 <div className="space-y-2">
-                  <Label htmlFor="home-name">Nombre del Equipo</Label>
+                  <Label htmlFor="home-name">
+                    {t("game_setup.team_name_label")}
+                  </Label>
                   <Input
                     id="home-name"
-                    placeholder="Ej: Lakers"
+                    placeholder={t("game_setup.home_team_placeholder")}
                     value={homeTeamName}
                     onChange={(e) => setHomeTeamName(e.target.value)}
                   />
@@ -218,7 +228,7 @@ export const GameSetup = () => {
                     className="flex items-center gap-2"
                   >
                     <Palette className="w-4 h-4" />
-                    Color del Equipo
+                    {t("game_setup.team_color_label")}
                   </Label>
                   <div className="flex items-center gap-3">
                     <Input
@@ -236,7 +246,7 @@ export const GameSetup = () => {
 
                 {/* Players */}
                 <div className="space-y-3">
-                  <Label>Jugadores (12)</Label>
+                  <Label>{t("game_setup.players_label")}</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {homePlayers.map((player, index) => (
                       <div key={index} className="flex items-center gap-2">
@@ -252,7 +262,9 @@ export const GameSetup = () => {
                           placeholder="#"
                         />
                         <Input
-                          placeholder={`Jugador ${index + 1}`}
+                          placeholder={`${t(
+                            "game_setup.player_placeholder_prefix"
+                          )} ${index + 1}`}
                           value={player}
                           onChange={(e) =>
                             handleHomePlayerChange(index, e.target.value)
@@ -271,18 +283,20 @@ export const GameSetup = () => {
           <TabsContent value="away" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>Equipo Visitante</CardTitle>
+                <CardTitle>{t("game_setup.away_team_config_title")}</CardTitle>
                 <CardDescription>
-                  Configura el nombre, color y jugadores del equipo visitante
+                  {t("game_setup.away_team_config_desc")}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Team Name */}
                 <div className="space-y-2">
-                  <Label htmlFor="away-name">Nombre del Equipo</Label>
+                  <Label htmlFor="away-name">
+                    {t("game_setup.team_name_label")}
+                  </Label>
                   <Input
                     id="away-name"
-                    placeholder="Ej: Celtics"
+                    placeholder={t("game_setup.away_team_placeholder")}
                     value={awayTeamName}
                     onChange={(e) => setAwayTeamName(e.target.value)}
                   />
@@ -295,7 +309,7 @@ export const GameSetup = () => {
                     className="flex items-center gap-2"
                   >
                     <Palette className="w-4 h-4" />
-                    Color del Equipo
+                    {t("game_setup.team_color_label")}
                   </Label>
                   <div className="flex items-center gap-3">
                     <Input
@@ -313,7 +327,7 @@ export const GameSetup = () => {
 
                 {/* Players */}
                 <div className="space-y-3">
-                  <Label>Jugadores (12)</Label>
+                  <Label>{t("game_setup.players_label")}</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {awayPlayers.map((player, index) => (
                       <div key={index} className="flex items-center gap-2">
@@ -329,7 +343,9 @@ export const GameSetup = () => {
                           placeholder="#"
                         />
                         <Input
-                          placeholder={`Jugador ${index + 1}`}
+                          placeholder={`${t(
+                            "game_setup.player_placeholder_prefix"
+                          )} ${index + 1}`}
                           value={player}
                           onChange={(e) =>
                             handleAwayPlayerChange(index, e.target.value)
@@ -353,7 +369,7 @@ export const GameSetup = () => {
             className="gap-2 font-semibold text-lg px-8"
           >
             <Play className="w-5 h-5" />
-            Iniciar Partido
+            {t("game_setup.start_game_button")}
           </Button>
         </div>
       </div>

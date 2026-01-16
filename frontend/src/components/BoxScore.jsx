@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useGameStore } from "../store/gameStore";
+import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -21,6 +22,7 @@ import { ScrollArea } from "./ui/scroll-area";
 import { BarChart3 } from "lucide-react";
 
 export const BoxScore = ({ open, onOpenChange }) => {
+  const { t } = useTranslation();
   const { homeTeam, awayTeam, homePlayerStats, awayPlayerStats } =
     useGameStore();
   const [activeTab, setActiveTab] = useState("home");
@@ -53,49 +55,49 @@ export const BoxScore = ({ open, onOpenChange }) => {
         <TableHeader>
           <TableRow>
             <TableHead className="sticky top-0 bg-background">
-              Jugador
+              {t("box_score.player")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              MIN
+              {t("box_score.minutes")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              PTS
+              {t("box_score.points")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              T2
+              {t("box_score.t2")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              T3
+              {t("box_score.t3")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              T1
+              {t("box_score.t1")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              REB
+              {t("box_score.rebounds")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              AST
+              {t("box_score.assists")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              BR
+              {t("box_score.steals")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              BP
+              {t("box_score.turnovers")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              TF
+              {t("box_score.blocks")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              TC
+              {t("box_score.blocks_received")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              FC
+              {t("box_score.fouls_committed")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              FR
+              {t("box_score.fouls_received")}
             </TableHead>
             <TableHead className="sticky top-0 bg-background text-center">
-              VAL
+              {t("box_score.valuation")}
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -165,7 +167,7 @@ export const BoxScore = ({ open, onOpenChange }) => {
           })}
           {/* Team Totals */}
           <TableRow className="font-bold bg-muted/50">
-            <TableCell>TOTAL</TableCell>
+            <TableCell>{t("box_score.total")}</TableCell>
             <TableCell className="text-center">-</TableCell>
             <TableCell className="text-center">
               {teamStats.reduce((sum, s) => sum + s.points, 0)}
@@ -221,11 +223,9 @@ export const BoxScore = ({ open, onOpenChange }) => {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <BarChart3 className="w-5 h-5" />
-            Estadísticas del Partido (Box Score)
+            {t("box_score.title")}
           </DialogTitle>
-          <DialogDescription>
-            Estadísticas detalladas por jugador y equipo
-          </DialogDescription>
+          <DialogDescription>{t("box_score.description")}</DialogDescription>
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">

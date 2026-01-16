@@ -1,23 +1,27 @@
-import React from 'react';
-import { useGameStore } from '../store/gameStore';
-import { ScrollArea } from './ui/scroll-area';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { List } from 'lucide-react';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useGameStore } from "../store/gameStore";
+import { ScrollArea } from "./ui/scroll-area";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { List } from "lucide-react";
 
 export const PlayByPlay = () => {
+  const { t } = useTranslation();
   const { playByPlay, currentQuarter, homeTeam, awayTeam } = useGameStore();
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   const getQuarterLabel = (quarter) => {
     if (quarter <= 4) {
-      return `Q${quarter}`;
+      return t("game_timer.quarter", { quarter });
     } else {
-      return `OT${quarter - 4}`;
+      return `${t("game_timer.overtime")} ${quarter - 4}`;
     }
   };
 
@@ -26,28 +30,30 @@ export const PlayByPlay = () => {
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2">
           <List className="w-5 h-5" />
-          Jugada a Jugada
+          {t("play_by_play.title")}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         <ScrollArea className="h-[400px] px-4">
           {playByPlay.length === 0 ? (
             <div className="text-center text-muted-foreground py-8">
-              No hay jugadas registradas aún
+              {t("play_by_play.empty")}
             </div>
           ) : (
             <div className="space-y-2 pb-4">
               {playByPlay.map((play) => {
-                const teamColor = play.team === 'home' ? homeTeam.color : awayTeam.color;
+                const teamColor =
+                  play.team === "home" ? homeTeam.color : awayTeam.color;
                 return (
-                  <div 
+                  <div
                     key={play.id}
                     className="border-l-2 pl-3 py-2 hover:bg-muted/50 transition-colors rounded-r"
                     style={{ borderColor: teamColor }}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-medium text-muted-foreground">
-                        {getQuarterLabel(play.quarter)} - {formatTime(play.time)}
+                        {getQuarterLabel(play.quarter)} -{" "}
+                        {formatTime(play.time)}
                       </span>
                     </div>
                     <div className="text-sm">{play.text}</div>

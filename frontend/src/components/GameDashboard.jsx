@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
-import { useGameStore } from '../store/gameStore';
-import { ThemeToggle } from './ThemeToggle';
-import { Scoreboard } from './Scoreboard';
-import { GameTimer } from './GameTimer';
-import { PlayerSelector } from './PlayerSelector';
-import { ActionButtons } from './ActionButtons';
-import { PlayByPlay } from './PlayByPlay';
-import { BoxScore } from './BoxScore';
-import { Button } from './ui/button';
-import { Undo, BarChart3, Download, Home, Settings } from 'lucide-react';
-import { toast } from 'sonner';
-import { exportGameToPDF } from '../utils/pdfExport';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
-import { Label } from './ui/label';
-import { Switch } from './ui/switch';
+import React, { useState } from "react";
+import { useGameStore } from "../store/gameStore";
+import { useTranslation } from "react-i18next";
+import { ThemeToggle } from "./ThemeToggle";
+import { Scoreboard } from "./Scoreboard";
+import { GameTimer } from "./GameTimer";
+import { PlayerSelector } from "./PlayerSelector";
+import { ActionButtons } from "./ActionButtons";
+import { PlayByPlay } from "./PlayByPlay";
+import { BoxScore } from "./BoxScore";
+import { Button } from "./ui/button";
+import { Undo, BarChart3, Download, Home, Settings } from "lucide-react";
+import { toast } from "sonner";
+import { exportGameToPDF } from "../utils/pdfExport";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "./ui/dialog";
+import { Label } from "./ui/label";
+import { Switch } from "./ui/switch";
 
 export const GameDashboard = () => {
+  const { t } = useTranslation();
   const { undo, history, resetGame, getGameData } = useGameStore();
   const [showBoxScore, setShowBoxScore] = useState(false);
   const [showExportDialog, setShowExportDialog] = useState(false);
@@ -24,11 +32,11 @@ export const GameDashboard = () => {
 
   const handleUndo = () => {
     if (history.length === 0) {
-      toast.error('No hay acciones para deshacer');
+      toast.error(t("dashboard.no_actions_undo"));
       return;
     }
     undo();
-    toast.success('Acción deshecha', { duration: 1500 });
+    toast.success(t("dashboard.action_undone"), { duration: 1500 });
   };
 
   const handleExport = () => {
@@ -38,7 +46,7 @@ export const GameDashboard = () => {
   const confirmExport = () => {
     const gameData = getGameData();
     exportGameToPDF(gameData, includePlayByPlay);
-    toast.success('Box Score exportado correctamente', { duration: 1500 });
+    toast.success(t("dashboard.box_score_exported"), { duration: 1500 });
     setShowExportDialog(false);
     setIncludePlayByPlay(false);
   };
@@ -49,7 +57,7 @@ export const GameDashboard = () => {
 
   const confirmReset = () => {
     resetGame();
-    toast.success('Partido reiniciado', { duration: 1500 });
+    toast.success(t("dashboard.game_reset"), { duration: 1500 });
     setShowResetDialog(false);
   };
 
@@ -61,48 +69,48 @@ export const GameDashboard = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <h1 className="text-xl md:text-2xl font-bold font-digital">
-                Estadísticas Baloncesto - CourtSide Stats
+                {t("dashboard.title")}
               </h1>
             </div>
-            
+
             <div className="flex items-center gap-2">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleUndo}
                 disabled={history.length === 0}
-                title="Deshacer última acción"
+                title={t("dashboard.undo_action")}
               >
                 <Undo className="h-5 w-5" />
               </Button>
-              
+
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setShowBoxScore(true)}
-                title="Ver estadísticas"
+                title={t("dashboard.view_stats")}
               >
                 <BarChart3 className="h-5 w-5" />
               </Button>
-              
+
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleExport}
-                title="Exportar Box Score a PDF"
+                title={t("dashboard.export_pdf")}
               >
                 <Download className="h-5 w-5" />
               </Button>
-              
+
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleReset}
-                title="Reiniciar partido"
+                title={t("dashboard.reset_game")}
               >
                 <Settings className="h-5 w-5" />
               </Button>
-              
+
               <ThemeToggle />
             </div>
           </div>
@@ -125,7 +133,7 @@ export const GameDashboard = () => {
             <PlayByPlay />
           </div>
         </div>
-        
+
         {/* Play by Play for mobile */}
         <div className="lg:hidden">
           <PlayByPlay />
@@ -142,15 +150,15 @@ export const GameDashboard = () => {
       <Dialog open={showExportDialog} onOpenChange={setShowExportDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Exportar Box Score Completo a PDF</DialogTitle>
+            <DialogTitle>{t("export_dialog.title")}</DialogTitle>
             <DialogDescription>
-              Se exportarán todas las estadísticas detalladas del partido
+              {t("export_dialog.description")}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="flex items-center justify-between">
               <Label htmlFor="play-by-play" className="cursor-pointer">
-                Incluir jugada a jugada
+                {t("export_dialog.include_play_by_play")}
               </Label>
               <Switch
                 id="play-by-play"
@@ -160,11 +168,14 @@ export const GameDashboard = () => {
             </div>
           </div>
           <div className="flex justify-end gap-3">
-            <Button variant="outline" onClick={() => setShowExportDialog(false)}>
-              Cancelar
+            <Button
+              variant="outline"
+              onClick={() => setShowExportDialog(false)}
+            >
+              {t("common.cancel")}
             </Button>
             <Button onClick={confirmExport}>
-              Exportar PDF
+              {t("export_dialog.confirm")}
             </Button>
           </div>
         </DialogContent>
@@ -174,17 +185,17 @@ export const GameDashboard = () => {
       <Dialog open={showResetDialog} onOpenChange={setShowResetDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>¿Reiniciar partido?</DialogTitle>
+            <DialogTitle>{t("reset_dialog.title")}</DialogTitle>
             <DialogDescription>
-              Esta acción eliminará todos los datos del partido actual. Esta acción no se puede deshacer.
+              {t("reset_dialog.description")}
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-end gap-3">
             <Button variant="outline" onClick={() => setShowResetDialog(false)}>
-              Cancelar
+              {t("common.cancel")}
             </Button>
             <Button variant="destructive" onClick={confirmReset}>
-              Reiniciar
+              {t("reset_dialog.confirm")}
             </Button>
           </div>
         </DialogContent>

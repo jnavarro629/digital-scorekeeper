@@ -1,22 +1,24 @@
-import React, { useEffect, useRef } from 'react';
-import { useGameStore } from '../store/gameStore';
-import { Button } from './ui/button';
-import { Play, Pause, RotateCcw, SkipForward } from 'lucide-react';
-import { toast } from 'sonner';
+import React, { useEffect, useRef } from "react";
+import { useGameStore } from "../store/gameStore";
+import { useTranslation } from "react-i18next";
+import { Button } from "./ui/button";
+import { Play, Pause, RotateCcw, SkipForward } from "lucide-react";
+import { toast } from "sonner";
 
 export const GameTimer = () => {
-  const { 
-    timeElapsed, 
-    isTimerRunning, 
+  const { t } = useTranslation();
+  const {
+    timeElapsed,
+    isTimerRunning,
     currentQuarter,
     quarterDuration,
-    startTimer, 
-    pauseTimer, 
+    startTimer,
+    pauseTimer,
     resetTimer,
     updateTime,
     nextQuarter,
   } = useGameStore();
-  
+
   const intervalRef = useRef(null);
 
   useEffect(() => {
@@ -40,20 +42,25 @@ export const GameTimer = () => {
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   const handleNextQuarter = () => {
     pauseTimer();
     nextQuarter();
-    toast.success(`Inicio del ${currentQuarter + 1}º cuarto`, { duration: 1500 });
+    toast.success(
+      t("toasts.quarter_started", { quarter: currentQuarter + 1 }),
+      { duration: 1500 }
+    );
   };
 
   const getQuarterLabel = () => {
     if (currentQuarter <= 4) {
-      return `${currentQuarter}º Cuarto`;
+      return `${currentQuarter}${t("game_timer.quarter")}`;
     } else {
-      return `Prórroga ${currentQuarter - 4}`;
+      return `${t("game_timer.overtime")} ${currentQuarter - 4}`;
     }
   };
 
@@ -87,7 +94,7 @@ export const GameTimer = () => {
             <Play className="h-5 w-5" />
           )}
         </Button>
-        
+
         <Button
           variant="outline"
           size="icon"
@@ -96,7 +103,7 @@ export const GameTimer = () => {
         >
           <RotateCcw className="h-5 w-5" />
         </Button>
-        
+
         <Button
           variant="outline"
           size="icon"
