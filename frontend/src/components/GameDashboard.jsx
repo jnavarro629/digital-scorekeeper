@@ -28,7 +28,7 @@ export const GameDashboard = () => {
       return;
     }
     undo();
-    toast.success('Acción deshecha');
+    toast.success('Acción deshecha', { duration: 1500 });
   };
 
   const handleExport = () => {
