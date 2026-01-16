@@ -498,11 +498,12 @@ export const ActionButtons = () => {
       )}
 
       {/* Rebound Dialog */}
-      <Dialog 
-        open={actionDialog.open && actionDialog.type === 'rebound'} 
-        onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}
-      >
-        <DialogContent>
+      {actionDialog.open && actionDialog.type === 'rebound' && (
+        <Dialog 
+          open={true} 
+          onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}
+        >
+          <DialogContent>
           <DialogHeader>
             <DialogTitle>Tipo de Rebote</DialogTitle>
             <DialogDescription>
