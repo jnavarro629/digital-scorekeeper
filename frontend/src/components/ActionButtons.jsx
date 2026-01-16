@@ -160,9 +160,10 @@ export const ActionButtons = () => {
 
   const handleFoulReceived = (playerIndex) => {
     addFoulReceived(getOpponentTeam(), playerIndex);
-    toast.success('Falta registrada', { duration: 1500 });
-    clearSelection();
-    setActionDialog({ open: false, type: null });
+    // Store the player who received the foul
+    setFreeThrowPlayer({ team: getOpponentTeam(), index: playerIndex });
+    // Ask if it was a shooting foul
+    setActionDialog({ open: true, type: 'shooting-foul-question' });
   };
 
   const handleReboundClick = () => {
