@@ -182,7 +182,7 @@ export const exportGameToPDF = (gameData, includePlayByPlay = false) => {
       play.text,
     ]);
     
-    pdf.autoTable({
+    autoTable(pdf, {
       startY: 28,
       head: [['Cuarto', 'Tiempo', 'Jugada']],
       body: playByPlayData.reverse(),
