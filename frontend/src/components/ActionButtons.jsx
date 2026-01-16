@@ -297,19 +297,22 @@ export const ActionButtons = () => {
           <Dialog open={true} onOpenChange={(open) => !open && setActionDialog({ open: false, type: null })}>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Número de tiros libres</DialogTitle>
+                <DialogTitle>Tiros libres</DialogTitle>
                 <DialogDescription>
-                  ¿Cuántos tiros libres debe tirar el jugador?
+                  ¿La falta conlleva tiros libres?
                 </DialogDescription>
               </DialogHeader>
-              <div className="flex gap-3 justify-center">
-                <Button onClick={() => handleFreeThrowCount(1)}>
+              <div className="grid grid-cols-2 gap-3">
+                <Button variant="outline" onClick={() => handleFreeThrowCount(0)} className="w-full">
+                  Sin tiros libres
+                </Button>
+                <Button onClick={() => handleFreeThrowCount(1)} className="w-full">
                   1 Tiro
                 </Button>
-                <Button onClick={() => handleFreeThrowCount(2)}>
+                <Button onClick={() => handleFreeThrowCount(2)} className="w-full">
                   2 Tiros
                 </Button>
-                <Button onClick={() => handleFreeThrowCount(3)}>
+                <Button onClick={() => handleFreeThrowCount(3)} className="w-full">
                   3 Tiros
                 </Button>
               </div>
