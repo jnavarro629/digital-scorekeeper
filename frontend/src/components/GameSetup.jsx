@@ -1,29 +1,48 @@
-import React, { useState } from 'react';
-import { useGameStore } from '../store/gameStore';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Users, Clock, Palette, Play } from 'lucide-react';
-import { toast } from 'sonner';
+import React, { useState } from "react";
+import { useGameStore } from "../store/gameStore";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Users, Clock, Palette, Play } from "lucide-react";
+import { toast } from "sonner";
 
 export const GameSetup = () => {
-  const { setTeamConfig, setQuarterDuration, setGameInfo, completeConfiguration } = useGameStore();
-  
-  const [homeTeamName, setHomeTeamName] = useState('');
-  const [homeTeamColor, setHomeTeamColor] = useState('#0074ff');
-  const [homePlayers, setHomePlayers] = useState(Array(12).fill(''));
-  const [homePlayerNumbers, setHomePlayerNumbers] = useState(Array(12).fill('').map((_, i) => i + 1));
-  
-  const [awayTeamName, setAwayTeamName] = useState('');
-  const [awayTeamColor, setAwayTeamColor] = useState('#ff4757');
-  const [awayPlayers, setAwayPlayers] = useState(Array(12).fill(''));
-  const [awayPlayerNumbers, setAwayPlayerNumbers] = useState(Array(12).fill('').map((_, i) => i + 1));
-  
+  const {
+    setTeamConfig,
+    setQuarterDuration,
+    setGameInfo,
+    completeConfiguration,
+  } = useGameStore();
+
+  const [homeTeamName, setHomeTeamName] = useState("");
+  const [homeTeamColor, setHomeTeamColor] = useState("#0074ff");
+  const [homePlayers, setHomePlayers] = useState(Array(12).fill(""));
+  const [homePlayerNumbers, setHomePlayerNumbers] = useState(
+    Array(12)
+      .fill("")
+      .map((_, i) => i + 1)
+  );
+
+  const [awayTeamName, setAwayTeamName] = useState("");
+  const [awayTeamColor, setAwayTeamColor] = useState("#ff4757");
+  const [awayPlayers, setAwayPlayers] = useState(Array(12).fill(""));
+  const [awayPlayerNumbers, setAwayPlayerNumbers] = useState(
+    Array(12)
+      .fill("")
+      .map((_, i) => i + 1)
+  );
+
   const [quarterDuration, setQuarterDurationLocal] = useState(10);
-  const [city, setCity] = useState('');
-  const [category, setCategory] = useState('');
+  const [city, setCity] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleHomePlayerChange = (index, value) => {
     const newPlayers = [...homePlayers];
@@ -33,7 +52,7 @@ export const GameSetup = () => {
 
   const handleHomePlayerNumberChange = (index, value) => {
     const newNumbers = [...homePlayerNumbers];
-    newNumbers[index] = parseInt(value) || (index + 1);
+    newNumbers[index] = parseInt(value) || index + 1;
     setHomePlayerNumbers(newNumbers);
   };
 
@@ -45,53 +64,55 @@ export const GameSetup = () => {
 
   const handleAwayPlayerNumberChange = (index, value) => {
     const newNumbers = [...awayPlayerNumbers];
-    newNumbers[index] = parseInt(value) || (index + 1);
+    newNumbers[index] = parseInt(value) || index + 1;
     setAwayPlayerNumbers(newNumbers);
   };
 
   const handleStartGame = () => {
     // Validation
     if (!homeTeamName.trim()) {
-      toast.error('Por favor, ingresa el nombre del equipo local');
+      toast.error("Por favor, ingresa el nombre del equipo local");
       return;
     }
     if (!awayTeamName.trim()) {
-      toast.error('Por favor, ingresa el nombre del equipo visitante');
+      toast.error("Por favor, ingresa el nombre del equipo visitante");
       return;
     }
-    
+
     const homePlayersFiltered = homePlayers
-      .map((name, idx) => ({ 
-        name: name.trim() || `Jugador ${idx + 1}`, 
-        number: homePlayerNumbers[idx] 
+      .map((name, idx) => ({
+        name: name.trim() || `Jugador ${idx + 1}`,
+        number: homePlayerNumbers[idx],
       }))
       .filter((_, idx) => idx < 12);
-    
+
     const awayPlayersFiltered = awayPlayers
-      .map((name, idx) => ({ 
-        name: name.trim() || `Jugador ${idx + 1}`, 
-        number: awayPlayerNumbers[idx] 
+      .map((name, idx) => ({
+        name: name.trim() || `Jugador ${idx + 1}`,
+        number: awayPlayerNumbers[idx],
       }))
       .filter((_, idx) => idx < 12);
 
     // Save configuration
-    setTeamConfig('home', {
+    setTeamConfig("home", {
       name: homeTeamName.trim(),
       color: homeTeamColor,
       players: homePlayersFiltered,
     });
-    
-    setTeamConfig('away', {
+
+    setTeamConfig("away", {
       name: awayTeamName.trim(),
       color: awayTeamColor,
       players: awayPlayersFiltered,
     });
-    
+
     setQuarterDuration(quarterDuration);
     setGameInfo({ city, category });
     completeConfiguration();
-    
-    toast.success('¡Configuración completada! El partido está listo.', { duration: 1500 });
+
+    toast.success("¡Configuración completada! El partido está listo.", {
+      duration: 1500,
+    });
   };
 
   return (
@@ -100,7 +121,7 @@ export const GameSetup = () => {
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold font-digital tracking-wide">
-            CourtSide Stats
+            CourtSide Stats | Estadísticas de Baloncesto
           </h1>
           <p className="text-muted-foreground">
             Configura los equipos para comenzar el partido
@@ -114,9 +135,7 @@ export const GameSetup = () => {
               <Clock className="w-5 h-5" />
               Configuración del Partido
             </CardTitle>
-            <CardDescription>
-              Información del partido
-            </CardDescription>
+            <CardDescription>Información del partido</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -130,7 +149,7 @@ export const GameSetup = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="category">Categoría</Label>
+                <Label htmlFor="category">Categoría/Competición</Label>
                 <Input
                   id="category"
                   placeholder="Ej: Senior, Junior, Cadete..."
@@ -149,7 +168,9 @@ export const GameSetup = () => {
                 min="1"
                 max="20"
                 value={quarterDuration}
-                onChange={(e) => setQuarterDurationLocal(parseInt(e.target.value) || 10)}
+                onChange={(e) =>
+                  setQuarterDurationLocal(parseInt(e.target.value) || 10)
+                }
                 className="max-w-[100px]"
               />
             </div>
@@ -168,7 +189,7 @@ export const GameSetup = () => {
               Equipo Visitante
             </TabsTrigger>
           </TabsList>
-          
+
           {/* Home Team */}
           <TabsContent value="home" className="space-y-4">
             <Card>
@@ -189,10 +210,13 @@ export const GameSetup = () => {
                     onChange={(e) => setHomeTeamName(e.target.value)}
                   />
                 </div>
-                
+
                 {/* Team Color */}
                 <div className="space-y-2">
-                  <Label htmlFor="home-color" className="flex items-center gap-2">
+                  <Label
+                    htmlFor="home-color"
+                    className="flex items-center gap-2"
+                  >
                     <Palette className="w-4 h-4" />
                     Color del Equipo
                   </Label>
@@ -204,10 +228,12 @@ export const GameSetup = () => {
                       onChange={(e) => setHomeTeamColor(e.target.value)}
                       className="w-20 h-10 cursor-pointer"
                     />
-                    <span className="text-sm text-muted-foreground">{homeTeamColor}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {homeTeamColor}
+                    </span>
                   </div>
                 </div>
-                
+
                 {/* Players */}
                 <div className="space-y-3">
                   <Label>Jugadores (12)</Label>
@@ -219,14 +245,18 @@ export const GameSetup = () => {
                           min="0"
                           max="99"
                           value={homePlayerNumbers[index]}
-                          onChange={(e) => handleHomePlayerNumberChange(index, e.target.value)}
+                          onChange={(e) =>
+                            handleHomePlayerNumberChange(index, e.target.value)
+                          }
                           className="w-16"
                           placeholder="#"
                         />
                         <Input
                           placeholder={`Jugador ${index + 1}`}
                           value={player}
-                          onChange={(e) => handleHomePlayerChange(index, e.target.value)}
+                          onChange={(e) =>
+                            handleHomePlayerChange(index, e.target.value)
+                          }
                           className="flex-1"
                         />
                       </div>
@@ -236,7 +266,7 @@ export const GameSetup = () => {
               </CardContent>
             </Card>
           </TabsContent>
-          
+
           {/* Away Team */}
           <TabsContent value="away" className="space-y-4">
             <Card>
@@ -257,10 +287,13 @@ export const GameSetup = () => {
                     onChange={(e) => setAwayTeamName(e.target.value)}
                   />
                 </div>
-                
+
                 {/* Team Color */}
                 <div className="space-y-2">
-                  <Label htmlFor="away-color" className="flex items-center gap-2">
+                  <Label
+                    htmlFor="away-color"
+                    className="flex items-center gap-2"
+                  >
                     <Palette className="w-4 h-4" />
                     Color del Equipo
                   </Label>
@@ -272,10 +305,12 @@ export const GameSetup = () => {
                       onChange={(e) => setAwayTeamColor(e.target.value)}
                       className="w-20 h-10 cursor-pointer"
                     />
-                    <span className="text-sm text-muted-foreground">{awayTeamColor}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {awayTeamColor}
+                    </span>
                   </div>
                 </div>
-                
+
                 {/* Players */}
                 <div className="space-y-3">
                   <Label>Jugadores (12)</Label>
@@ -287,14 +322,18 @@ export const GameSetup = () => {
                           min="0"
                           max="99"
                           value={awayPlayerNumbers[index]}
-                          onChange={(e) => handleAwayPlayerNumberChange(index, e.target.value)}
+                          onChange={(e) =>
+                            handleAwayPlayerNumberChange(index, e.target.value)
+                          }
                           className="w-16"
                           placeholder="#"
                         />
                         <Input
                           placeholder={`Jugador ${index + 1}`}
                           value={player}
-                          onChange={(e) => handleAwayPlayerChange(index, e.target.value)}
+                          onChange={(e) =>
+                            handleAwayPlayerChange(index, e.target.value)
+                          }
                           className="flex-1"
                         />
                       </div>
