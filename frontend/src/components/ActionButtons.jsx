@@ -290,8 +290,8 @@ export const ActionButtons = () => {
   const renderSecondaryDialog = () => {
     if (!actionDialog.open) return null;
     
-    const opponentPlayers = getOpponentPlayers();
-    const sameTeamPlayers = selectedPlayer.team === 'home' ? homeTeam.players : awayTeam.players;
+    const activeOpponentPlayers = getActiveOpponentPlayers();
+    const activeSameTeamPlayers = getActiveSameTeamPlayers();
 
     switch (actionDialog.type) {
       case 'free-throw-count':
