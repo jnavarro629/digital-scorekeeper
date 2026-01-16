@@ -43,7 +43,9 @@
     "away_team_config_desc": "Configurez le nom, la couleur et les joueurs de l'équipe visiteuse",
     "validation_home_name": "Veuillez saisir le nom de l'équipe locale",
     "validation_away_name": "Veuillez saisir le nom de l'équipe visiteuse",
-    "success_message": "Configuration terminée ! Le match est prêt."
+    "success_message": "Configuration terminée ! Le match est prêt.",
+    "mode_title": "Mode Visuel",
+    "mode_desc": "Choisissez entre le mode clair et sombre"
   },
   "dashboard": {
     "title": "Statistiques de basket-ball",

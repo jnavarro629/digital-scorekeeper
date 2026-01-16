@@ -43,7 +43,9 @@
     "away_team_config_desc": "Configure the name, color and players of the away team",
     "validation_home_name": "Please enter the home team name",
     "validation_away_name": "Please enter the away team name",
-    "success_message": "Configuration completed! The game is ready."
+    "success_message": "Configuration completed! The game is ready.",
+    "mode_title": "Visual Mode",
+    "mode_desc": "Choose between light and dark mode"
   },
   "dashboard": {
     "title": "CourtSide Stats",

@@ -12,8 +12,18 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import { Users, Clock, Palette, Play } from "lucide-react";
+import {
+  Users,
+  Clock,
+  Palette,
+  Play,
+  Building2,
+  Trophy,
+  Sun,
+  Moon,
+} from "lucide-react";
 import { toast } from "sonner";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const GameSetup = () => {
   const { t } = useTranslation();
@@ -132,58 +142,87 @@ export const GameSetup = () => {
           <p className="text-muted-foreground">{t("app.subtitle")}</p>
         </div>
 
-        {/* Game Settings */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="w-5 h-5" />
-              {t("game_setup.configuration_title")}
-            </CardTitle>
-            <CardDescription>
-              {t("game_setup.configuration_desc")}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="city">{t("game_setup.city_label")}</Label>
-                <Input
-                  id="city"
-                  placeholder={t("game_setup.city_placeholder")}
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="category">
-                  {t("game_setup.category_label")}
-                </Label>
-                <Input
-                  id="category"
-                  placeholder={t("game_setup.category_placeholder")}
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <Label htmlFor="quarter-duration" className="min-w-[200px]">
-                {t("game_setup.quarter_duration_label")}
-              </Label>
+        {/* Game Settings Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* City Card */}
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Building2 className="w-5 h-5 text-primary" />
+                {t("game_setup.city_label")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
               <Input
-                id="quarter-duration"
-                type="number"
-                min="1"
-                max="20"
-                value={quarterDuration}
-                onChange={(e) =>
-                  setQuarterDurationLocal(parseInt(e.target.value) || 10)
-                }
-                className="max-w-[100px]"
+                id="city"
+                placeholder={t("game_setup.city_placeholder")}
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
               />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+
+          {/* Competition Card */}
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Trophy className="w-5 h-5 text-primary" />
+                {t("game_setup.category_label")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Input
+                id="category"
+                placeholder={t("game_setup.category_placeholder")}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              />
+            </CardContent>
+          </Card>
+
+          {/* Quarter Duration Card */}
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Clock className="w-5 h-5 text-primary" />
+                {t("game_setup.quarter_duration_label")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-4">
+                <Input
+                  id="quarter-duration"
+                  type="number"
+                  min="1"
+                  max="20"
+                  value={quarterDuration}
+                  onChange={(e) =>
+                    setQuarterDurationLocal(parseInt(e.target.value) || 10)
+                  }
+                  className="max-w-[100px]"
+                />
+                <span className="text-sm text-muted-foreground">minutos</span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Mode Card */}
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Sun className="w-5 h-5 text-primary rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute w-5 h-5 text-primary rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                {t("game_setup.mode_title")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex items-center justify-between">
+              <span className="text-sm text-muted-foreground">
+                {t("game_setup.mode_desc")}
+              </span>
+              <ThemeToggle />
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Teams Configuration */}
         <Tabs defaultValue="home" className="w-full">

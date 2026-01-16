@@ -43,7 +43,9 @@
     "away_team_config_desc": "Configure o nome, cor e jogadores da equipe visitante",
     "validation_home_name": "Por favor, insira o nome da equipe da casa",
     "validation_away_name": "Por favor, insira o nome da equipe visitante",
-    "success_message": "Configuração concluída! O jogo está pronto."
+    "success_message": "Configuração concluída! O jogo está pronto.",
+    "mode_title": "Modo Visual",
+    "mode_desc": "Escolha entre modo claro e escuro"
   },
   "dashboard": {
     "title": "Estatísticas Basquete",

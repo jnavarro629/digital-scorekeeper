@@ -43,7 +43,9 @@
     "away_team_config_desc": "Configura el nombre, color y jugadores del equipo visitante",
     "validation_home_name": "Por favor, ingresa el nombre del equipo local",
     "validation_away_name": "Por favor, ingresa el nombre del equipo visitante",
-    "success_message": "¡Configuración completada! El partido está listo."
+    "success_message": "¡Configuración completada! El partido está listo.",
+    "mode_title": "Modo Visual",
+    "mode_desc": "Elige entre modo claro u oscuro"
   },
   "dashboard": {
     "title": "Estadísticas Baloncesto",
