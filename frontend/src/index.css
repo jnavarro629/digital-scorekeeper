@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,117 +6,117 @@
 
 @layer base {
   :root {
-    /* Base colors - Professional sports theme */
-    --background: 210 30% 98%;
-    --foreground: 220 20% 10%;
-    
+    /* Base colors - Basketball theme */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+
     /* Card and surfaces */
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 10%;
-    
+    --card-foreground: 0 0% 10%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
-    
-    /* Primary - Electric Blue (energetic, visible) */
-    --primary: 210 100% 50%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Primary - Basketball Orange (energetic, visible) */
+    --primary: 25 95% 50%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 210 100% 65%;
-    
-    /* Secondary - Stadium Orange (warm accent) */
-    --secondary: 25 95% 55%;
+    --primary-glow: 25 100% 65%;
+
+    /* Secondary - Deep Court Blue (classic pairing) */
+    --secondary: 220 30% 25%;
     --secondary-foreground: 0 0% 100%;
-    
+
     /* Muted tones */
-    --muted: 210 30% 96%;
-    --muted-foreground: 220 15% 40%;
-    
-    /* Accent - Teal (fresh, modern) */
-    --accent: 180 70% 45%;
-    --accent-foreground: 0 0% 100%;
-    
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Accent - Dark Gray */
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 10%;
+
     /* Success - Green */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
-    
+
     /* Destructive - Red */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
+
     /* Warning - Yellow */
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 10%;
-    
+
     /* Borders and inputs */
-    --border: 220 20% 88%;
-    --input: 220 20% 88%;
-    --ring: 210 100% 50%;
-    
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 25 95% 50%;
+
     /* Radius */
     --radius: 0.5rem;
-    
+
     /* Scoreboard specific tokens */
-    --scoreboard-bg: 220 25% 15%;
+    --scoreboard-bg: 0 0% 10%;
     --scoreboard-text: 0 0% 100%;
-    --timer-bg: 220 30% 12%;
-    --stat-highlight: 210 100% 50%;
-    
+    --timer-bg: 0 0% 15%;
+    --stat-highlight: 25 95% 50%;
+
     /* Team colors - defaults */
     --team-home: 210 100% 50%;
     --team-away: 0 84% 60%;
-    
+
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 20px rgba(0, 116, 255, 0.3);
-    
+    --shadow-glow: 0 0 20px rgba(249, 115, 22, 0.3);
+
     /* Animations */
     --transition-smooth: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .dark {
-    /* Dark mode - High contrast scoreboard theme */
-    --background: 220 30% 8%;
+    /* Dark mode - High contrast neutral theme */
+    --background: 0 0% 8%;
     --foreground: 0 0% 98%;
-    
-    --card: 220 25% 12%;
+
+    --card: 0 0% 12%;
     --card-foreground: 0 0% 98%;
-    
-    --popover: 220 25% 10%;
+
+    --popover: 0 0% 12%;
     --popover-foreground: 0 0% 98%;
-    
-    --primary: 210 100% 55%;
+
+    --primary: 25 95% 50%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 210 100% 70%;
-    
-    --secondary: 25 95% 60%;
+    --primary-glow: 25 100% 60%;
+
+    --secondary: 220 20% 20%;
     --secondary-foreground: 0 0% 100%;
-    
-    --muted: 220 25% 18%;
-    --muted-foreground: 220 15% 65%;
-    
-    --accent: 180 70% 50%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 20%;
     --accent-foreground: 0 0% 100%;
-    
+
     --success: 142 76% 45%;
     --success-foreground: 0 0% 100%;
-    
+
     --destructive: 0 84% 65%;
     --destructive-foreground: 0 0% 100%;
-    
+
     --warning: 38 92% 55%;
     --warning-foreground: 0 0% 10%;
-    
-    --border: 220 25% 22%;
-    --input: 220 25% 22%;
-    --ring: 210 100% 55%;
-    
-    --scoreboard-bg: 220 30% 10%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 25 95% 50%;
+
+    --scoreboard-bg: 0 0% 10%;
     --scoreboard-text: 0 0% 100%;
-    --timer-bg: 220 35% 8%;
-    
-    --shadow-glow: 0 0 30px rgba(0, 116, 255, 0.4);
+    --timer-bg: 0 0% 15%;
+
+    --shadow-glow: 0 0 30px rgba(249, 115, 22, 0.4);
   }
 }
 
@@ -126,42 +126,44 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
     font-feature-settings: "ss01", "cv01";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   /* Digital scoreboard font for numbers */
   .font-digital {
-    font-family: 'Orbitron', monospace;
+    font-family: "Orbitron", monospace;
     font-weight: 700;
     letter-spacing: 0.05em;
   }
-  
+
   /* Smooth transitions for interactive elements */
-  button, a, input, select {
-    transition: background-color var(--transition-smooth), 
-                border-color var(--transition-smooth),
-                color var(--transition-smooth),
-                transform var(--transition-smooth),
-                box-shadow var(--transition-smooth);
+  button,
+  a,
+  input,
+  select {
+    transition: background-color var(--transition-smooth),
+      border-color var(--transition-smooth), color var(--transition-smooth),
+      transform var(--transition-smooth), box-shadow var(--transition-smooth);
   }
-  
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
-  
+
   ::-webkit-scrollbar-track {
     @apply bg-muted;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     @apply bg-muted-foreground/50 rounded-full;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-muted-foreground/70;
   }
@@ -172,25 +174,26 @@
   .glow-primary {
     box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
   }
-  
+
   .glow-success {
     box-shadow: 0 0 20px hsl(var(--success) / 0.5);
   }
-  
+
   /* Pulse animation for active elements */
   @keyframes pulse-glow {
-    0%, 100% {
+    0%,
+    100% {
       box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
     }
     50% {
       box-shadow: 0 0 20px hsl(var(--primary) / 0.6);
     }
   }
-  
+
   .animate-pulse-glow {
     animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-  
+
   /* Score animation */
   @keyframes score-pop {
     0% {
@@ -203,11 +206,11 @@
       transform: scale(1);
     }
   }
-  
+
   .animate-score-pop {
     animation: score-pop 0.3s ease-out;
   }
-  
+
   /* Slide in from bottom */
   @keyframes slide-in-bottom {
     from {
@@ -219,7 +222,7 @@
       opacity: 1;
     }
   }
-  
+
   .animate-slide-in-bottom {
     animation: slide-in-bottom 0.3s ease-out;
   }
