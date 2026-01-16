@@ -495,6 +495,7 @@ export const ActionButtons = () => {
           </div>
         </DialogContent>
       </Dialog>
+      )}
 
       {/* Rebound Dialog */}
       <Dialog 
