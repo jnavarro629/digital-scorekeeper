@@ -144,7 +144,7 @@ export const exportGameToPDF = (gameData, includePlayByPlay = false) => {
   
   awayTableData.push(awayTotals);
   
-  pdf.autoTable({
+  autoTable(pdf, {
     startY: yPos,
     head: [['Jugador', 'PTS', 'T2', 'T3', 'T1', 'REB', 'AST', 'BR', 'BP', 'TF', 'FC', 'VAL']],
     body: awayTableData,
